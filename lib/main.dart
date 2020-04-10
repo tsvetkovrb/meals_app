@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/helpers/theme/configure_theme.dart';
 import 'package:shop_app/screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
@@ -8,9 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DeliMeals',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: configureTheme(),
       home: CategoriesScreen(),
     );
   }
