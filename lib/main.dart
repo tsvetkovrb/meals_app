@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/helpers/theme/configure_theme.dart';
 import 'package:shop_app/screens/categories_screen.dart';
+import 'package:shop_app/screens/category_meals.dart';
+import 'package:shop_app/screens/meal_detail_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DeliMeals',
       theme: configureTheme(),
-      home: CategoriesScreen(),
+      routes: {
+        '/': (ctx) => CategoriesScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
     );
   }
 }
