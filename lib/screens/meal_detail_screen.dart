@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/helpers/data.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  static String routeName = '/meal-detail-scree';
+  static String routeName = '/meal-detail-screen';
+  final Function toggleFavorite;
+  final Function isMealFavorite;
+
+  MealDetailScreen(this.toggleFavorite, this.isMealFavorite);
 
   Widget buildSectionTitle(BuildContext context, String title) {
     return Container(
@@ -10,17 +14,15 @@ class MealDetailScreen extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontFamily: Theme.of(context).textTheme.title.fontFamily,
-          fontWeight: Theme.of(context).textTheme.title.fontWeight,
-          fontSize: 24
-        ),
+            fontFamily: Theme.of(context).textTheme.title.fontFamily,
+            fontWeight: Theme.of(context).textTheme.title.fontWeight,
+            fontSize: 24),
       ),
     );
   }
 
   Widget buildSection({List children}) {
     return Container(
-      // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
       width: double.infinity,
       child: Column(
         children: children.asMap().entries.map((entry) {
@@ -84,6 +86,10 @@ class MealDetailScreen extends StatelessWidget {
             buildSection(children: selectedMeal.steps)
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: isMealFavorite(id) ? Icon(Icons.delete) : Icon(Icons.favorite),
+        onPressed: () => toggleFavorite(id),
       ),
     );
   }
